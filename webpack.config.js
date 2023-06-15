@@ -19,7 +19,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: [["@babel/preset-env", "@babel/preset-react"]],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
           },
         },
       },
@@ -44,11 +44,11 @@ module.exports = {
     // }),
   ],
   devServer: {
-    // historyApiFallback: true,
-    // contentBase: path.resolve(__dirname, "./build"),
-    // open: true,
-    // compress: true,
-    // hot: true,
-    // port: 8080,
+    static: {
+      directory: path.join(__dirname, "./build"),
+    },
+    proxy: {
+      "/api": "http://localhost:3000",
+    },
   },
 };
