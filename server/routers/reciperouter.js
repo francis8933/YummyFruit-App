@@ -14,7 +14,7 @@ recipeRouter.post(
   yummyController.createUser,
   yummyCookie.createCookie,
   (req, res) => {
-    res.redirect("/account");
+    return res.status(200).json(res.locals.user);
     //res.redirect('/account');
   }
 );
@@ -27,11 +27,11 @@ recipeRouter.post(
   yummyController.findUser,
   yummyCookie.createCookie,
   (req, res) => {
-    res.redirect("/account");
+    return res.status(200).json(res.locals.user);
   }
 );
 
-recipeRouter.get("/account", yummyController.checkCookie,(req, res) => {
+recipeRouter.get("/account", yummyController.checkCookie, (req, res) => {
   if (res.locals.user.recipes.length > 0) {
     return res.status(200).json(res.locals.user.recipes);
   } else {
@@ -40,7 +40,7 @@ recipeRouter.get("/account", yummyController.checkCookie,(req, res) => {
 });
 
 recipeRouter.post("/createrecipe", yummyController.newRecipes, (req, res) => {
-  res.redirect("/account");
+  return res.status(200).json(res.locals.user_id);
 });
 
 module.exports = recipeRouter;
