@@ -1,19 +1,20 @@
-const UserDb = require("../models/usermodel.js");
-const recipeDb = require("../models/recipe.js");
+const UserDb = require('../models/usermodel.js');
+const recipeDb = require('../models/recipe.js');
 
 const yummyController = {};
 
 yummyController.createUser = (req, res, next) => {
   const { userName, password } = req.body;
-  UserDb.create({ userName: userName, password: password })
+  console.log('getting in create User');
+  UserDb.create({ userName, password })
     .then((data) => {
       res.locals.user = data;
-      //console.log(res.locals.user);
+      console.log(res.locals.user, 'getting out create user');
       return next();
     })
     .catch((err) => {
       console.log(err);
-      next({ message: { err: "User name not able" } });
+      next({ message: { err: 'User name not able' } });
     });
 };
 
@@ -26,11 +27,11 @@ yummyController.findUser = (req, res, next) => {
       if (password === res.locals.user.password) {
         return next();
       } else {
-        return next({ message: { err: "Incorrect Password" } });
+        return next({ message: { err: 'Incorrect Password' } });
       }
     })
     .catch((err) => {
-      next({ message: { err: "User not found" } });
+      next({ message: { err: 'User not found' } });
     });
 };
 yummyController.checkCookie = (req, res, next) => {
@@ -41,10 +42,10 @@ yummyController.checkCookie = (req, res, next) => {
         return next();
       })
       .catch((err) => {
-        next({ message: { err: "User not found" } });
+        next({ message: { err: 'User not found' } });
       });
   } else {
-    return res.redirect("/login");
+    return res.redirect('/login');
   }
 };
 
@@ -68,7 +69,7 @@ yummyController.newRecipes = (req, res, next) => {
       return next();
     })
     .catch((err) => {
-      next({ message: { err: "User not found" } });
+      next({ message: { err: 'User not found' } });
     });
 };
 

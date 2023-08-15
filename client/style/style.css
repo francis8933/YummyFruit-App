@@ -1,8 +1,13 @@
 body {
-  background-color: rgb(174, 239, 169);
+  background-color: rgba(152, 208, 148, 0.825);
 }
 
 h1 {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+}
+.create::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
