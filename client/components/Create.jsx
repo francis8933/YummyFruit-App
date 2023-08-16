@@ -18,7 +18,7 @@ export default function Create() {
     const body = { userName, password };
     console.log('fetching', userName, password);
     const response = await fetch('http://localhost:3000/api/create', {
-      method: POST,
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
