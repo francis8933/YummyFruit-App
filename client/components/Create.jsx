@@ -14,21 +14,22 @@ export default function Create() {
     setPassword(e.target.value);
   }
   async function summitHandler() {
-    // try {
-    const body = { userName, password };
-    console.log('fetching', userName, password);
-    const response = await fetch('http://localhost:3000/api/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
-    const data = await response.json();
-    console.log(data);
-    // } catch (error) {
-    //   console.error({ message: 'User not created' });
-    // }
+    event.preventDefault(); // Prevent default form submission behavior
+    try {
+      const body = { userName, password };
+      console.log('fetching', userName, password);
+      const response = await fetch('http://localhost:3000/api/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+      const data = await response.json();
+      console.log('data', data);
+    } catch (error) {
+      console.error({ message: 'User not created' });
+    }
   }
 
   return (
@@ -39,6 +40,7 @@ export default function Create() {
         <input type="text" onChange={userNameHandler}></input>
         <label>Password: </label>
         <input type="text" onChange={passwordHandler}></input>
+        {/* <button onClick={summitHandler}>Create Account</button> */}
         <button onClick={summitHandler}>Create Account</button>
       </form>
     </div>
